@@ -26,8 +26,10 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public int isExists(User user) {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		return userMapper.selectByPrimaryKey(user.getPhone()) == null
+				? 0	 //用户不存在
+				: 1; //用户已存在
 	}
 	
 }
