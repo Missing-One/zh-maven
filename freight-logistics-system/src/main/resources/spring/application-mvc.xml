@@ -12,7 +12,7 @@
 	<!-- 配置SpringMVC -->
 	
 	<!-- 4.扫描web相关的bean -->
-    <context:component-scan base-package="com.zh.smbms.web" />
+    <context:component-scan base-package="com.groupsix.freightlogisticssystem.controller" />
 	
 	<!-- 1.开启SpringMVC注解模式 -->
 	<!-- 简化配置： 
@@ -20,7 +20,7 @@
 	(2)提供一些列：数据绑定，数字和日期的format @NumberFormat, @DateTimeFormat, xml,json默认读写支持  -->
 	<mvc:annotation-driven>
         <mvc:message-converters>
-       	 	<!-- 解决@ResponseBody中文乱码 -->  
+<!--        	 	解决@ResponseBody中文乱码   -->
             <bean class="org.springframework.http.converter.StringHttpMessageConverter">
                 <property name="supportedMediaTypes">
                     <list>
@@ -31,20 +31,20 @@
         </mvc:message-converters>
     </mvc:annotation-driven>
     
-  	<bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">  
-	    <!-- 定义默认的异常处理页面，当该异常类型的注册时使用 -->  
+  	<!-- <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">  
+	    定义默认的异常处理页面，当该异常类型的注册时使用  
 	    <property name="defaultErrorView" value="error"></property>  
-	    <!-- 定义异常处理页面用来获取异常信息的变量名，默认名为exception -->  
+	    定义异常处理页面用来获取异常信息的变量名，默认名为exception  
 	    <property name="exceptionAttribute" value="ex"></property>  
-	    <!-- 定义需要特殊处理的异常，用类名或完全路径名作为key，异常也页名作为值 -->  
+	    定义需要特殊处理的异常，用类名或完全路径名作为key，异常也页名作为值  
 	    <property name="exceptionMappings">  
 	        <props>  
 	            <prop key="...">error-business</prop>  
 	            <prop key="...">error-parameter</prop>  
-	            <!-- 这里还可以继续扩展对不同异常类型的处理 -->  
+	            这里还可以继续扩展对不同异常类型的处理  
 	        </props>  
 	    </property>  
-	</bean>  
+	</bean>   -->
     
     <!-- 配置interceptors -->
 	<!-- <mvc:interceptors>
@@ -66,11 +66,11 @@
 	(1)加入对静态资源的处理：js,gif,png
 	(2)允许使用"/"做整体映射 -->
 <!-- 	<mvc:default-servlet-handler/> -->
-	<!-- <mvc:resources location="/css/" mapping="/css/**" />
+	<mvc:resources location="/css/" mapping="/css/**" />
 	<mvc:resources location="/js/" mapping="/js/**" />
 	<mvc:resources location="/images/" mapping="/images/**" cache-period="3600" />
-	<mvc:resources location="/calendar/" mapping="/calendar/**" /> -->
-	<mvc:resources location="/statics/" mapping="/statics/**" />
+<!-- 	<mvc:resources location="/calendar/" mapping="/calendar/**" /> -->
+<!-- 	<mvc:resources location="/statics/" mapping="/statics/**" /> -->
 	
 	<!-- 3.配置jsp 显示ViewResolver -->
 	<!-- <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -81,15 +81,27 @@
 	
 	<!-- 配置多视图解析器：允许同样的内容数据呈现不同的view -->
 	<bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
-		<property name="favorParameter" value="true"/>
-		<property name="defaultContentType" value="text/html"/>
-		<property name="mediaTypes">
-			<list>
+		<property name="contentNegotiationManager">
+			<bean id="contentNegotiationManager"  
+		     class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">  
+			    <property name="mediaTypes">  
+			        <value>  
+			            html = text/html
+						json = application/json
+						xml = application/xml 
+			        </value>  
+			    </property>  
+			    <property name="favorParameter" value="true"/>
+			    <property name="defaultContentType" value="text/html" />  
+			</bean>
+		</property>
+		<!-- <property name="mediaTypes">
+			<value>
 				html = text/html;charset=UTF-8"
 				json = application/json;charset=UTF-8"
 				xml = application/xml;charset=UTF-8"
-			</list>
-		</property>
+			</value>
+		</property> -->
 		<property name="viewResolvers">
 			<list>
 				<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" >

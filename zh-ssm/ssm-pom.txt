@@ -1,9 +1,7 @@
 
-
-
 	<parent>
 		<groupId>com.zh</groupId>
-		<artifactId>zh-pom</artifactId>
+		<artifactId>zh-ssm</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
   <dependencies>
@@ -98,6 +96,36 @@
 	    <artifactId>mysql-connector-java</artifactId>
 	</dependency>
 	<!-- end mysql 连接支持 -->
+
+    <!-- start log4j jar -->
+	<dependency>
+	    <groupId>org.apache.logging.log4j</groupId>
+	    <artifactId>log4j-core</artifactId>
+	</dependency>
+	<dependency>
+	    <groupId>org.apache.logging.log4j</groupId>
+	    <artifactId>log4j-api</artifactId>
+	</dependency>
+	<dependency>
+	    <groupId>org.apache.logging.log4j</groupId>
+	    <artifactId>log4j-web</artifactId>
+	</dependency>
+	<!-- end log4j jar -->
+	
+	<!-- 文件上传 begin -->
+	<dependency>
+	    <groupId>commons-fileupload</groupId>
+	    <artifactId>commons-fileupload</artifactId>
+	</dependency>
+	<dependency>
+	    <groupId>commons-io</groupId>
+	    <artifactId>commons-io</artifactId>
+	</dependency>
+	<dependency>
+	    <groupId>org.apache.commons</groupId>
+	    <artifactId>commons-lang3</artifactId>
+	</dependency>
+	<!-- 文件上传 end -->
 	
 	<!-- start servlet-api -->
 	<dependency>

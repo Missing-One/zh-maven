@@ -1,9 +1,11 @@
-
-
-
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.groupsix</groupId>
+  <artifactId>freight-logistics-system</artifactId>
+  <packaging>war</packaging>
 	<parent>
 		<groupId>com.zh</groupId>
-		<artifactId>zh-pom</artifactId>
+		<artifactId>zh-ssm</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
   <dependencies>
@@ -98,6 +100,36 @@
 	    <artifactId>mysql-connector-java</artifactId>
 	</dependency>
 	<!-- end mysql 连接支持 -->
+
+    <!-- start log4j jar -->
+	<dependency>
+	    <groupId>org.apache.logging.log4j</groupId>
+	    <artifactId>log4j-core</artifactId>
+	</dependency>
+	<dependency>
+	    <groupId>org.apache.logging.log4j</groupId>
+	    <artifactId>log4j-api</artifactId>
+	</dependency>
+	<dependency>
+	    <groupId>org.apache.logging.log4j</groupId>
+	    <artifactId>log4j-web</artifactId>
+	</dependency>
+	<!-- end log4j jar -->
+	
+	<!-- 文件上传 begin -->
+	<dependency>
+	    <groupId>commons-fileupload</groupId>
+	    <artifactId>commons-fileupload</artifactId>
+	</dependency>
+	<dependency>
+	    <groupId>commons-io</groupId>
+	    <artifactId>commons-io</artifactId>
+	</dependency>
+	<dependency>
+	    <groupId>org.apache.commons</groupId>
+	    <artifactId>commons-lang3</artifactId>
+	</dependency>
+	<!-- 文件上传 end -->
 	
 	<!-- start servlet-api -->
 	<dependency>
@@ -137,3 +169,5 @@
 		</plugin>
   	</plugins>
   </build>
+  
+</project>
