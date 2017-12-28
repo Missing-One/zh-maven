@@ -14,8 +14,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User login(User user) {
-		// TODO Auto-generated method stub
-		return null;
+		return user!=null?userMapper.login(user):null;
 	}
 
 	@Override
