@@ -20,8 +20,18 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public int register(User user) throws Throwable {
-		// TODO Auto-generated method stub
-		return 0;
+		if (user!=null) {
+			if (isExists(user)==1) {
+				return 0;
+			} else if (isExists(user)==0){
+				return userMapper.insert(user);
+			}else {
+				return -1;
+			}
+		}else {
+			return -1;
+		}
+		
 	}
 
 	@Override
