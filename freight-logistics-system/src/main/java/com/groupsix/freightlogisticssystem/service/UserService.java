@@ -18,7 +18,7 @@ public interface UserService {
 	 * 
 	 * @return 返回状态码{@code -1查询失败  0不存在该用户  1已存在该用户}
 	 */
-	int isExists();
+	int isExists(User user);
 	
 	/**
 	 * 用户登陆

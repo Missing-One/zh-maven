@@ -9,11 +9,8 @@ import com.groupsix.freightlogisticssystem.service.UserService;
 @Service
 public class UserServiceImpl implements UserService {
 
-	@Override
-	public int isExists() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+	@Autowired
+	UserMapper userMapper;
 
 	@Override
 	public User login(User user) {
@@ -23,6 +20,12 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public int register(User user) throws Throwable {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int isExists(User user) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
