@@ -60,7 +60,7 @@
         <param-value>classpath:logger/log4j2.xml</param-value>
 	</context-param>
 	<!-- 下面2项在web2.5使用,web3.0会自动配置了 -->
-	<listener><listener-class>org.apache.logging.log4j.web.Log4jServletContextListener</listener-class></listener>
+	<!-- <listener><listener-class>org.apache.logging.log4j.web.Log4jServletContextListener</listener-class></listener>
 	<filter>
 		<filter-name>log4jServletFilter</filter-name>
 		<filter-class>org.apache.logging.log4j.web.Log4jServletFilter</filter-class>
@@ -72,7 +72,7 @@
 		<dispatcher>FORWARD</dispatcher>
 		<dispatcher>INCLUDE</dispatcher>
 		<dispatcher>ERROR</dispatcher>
-	</filter-mapping>
+	</filter-mapping> -->
 	<!-- log4j2 end -->
 	
 	
