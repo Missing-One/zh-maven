@@ -14,20 +14,31 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User login(User user) {
-		System.out.println("");
 		return user!=null?userMapper.login(user):null;
 	}
 
 	@Override
-	public int isExists(User user) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int register(User user) throws Throwable {
+		if (user!=null) {
+			if (isExists(user)==1) {
+				return 0;
+			} else if (isExists(user)==0){
+				return userMapper.insert(user);
+			}else {
+				return -1;
+			}
+		}else {
+			return -1;
+		}
+		
 	}
 
 	@Override
-	public int register(User user) throws Throwable {
-		// TODO Auto-generated method stub
-		return 0;
+	public int isExists(User user) {
+		
+		return userMapper.selectByPrimaryKey(user.getPhone()) == null
+				? 0	 //用户不存在
+				: 1; //用户已存在
 	}
 
 	
