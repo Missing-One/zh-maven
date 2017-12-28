@@ -8,41 +8,21 @@ import com.groupsix.freightlogisticssystem.pojo.User;
 import com.groupsix.freightlogisticssystem.service.UserService;
 @Service
 public class UserServiceImpl implements UserService {
-	@Autowired
-	private UserMapper userMapper;
 
 	@Override
-	public int deleteByPrimaryKey(String phone) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-	
-	//注册
-	@Override
-	public int insert(User record) {
-		return userMapper.insert(record);
-	}
-
-	@Override
-	public int insertSelective(User record) {
+	public int isExists() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public User selectByPrimaryKey(String phone) {
+	public User login(User user) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public int updateByPrimaryKeySelective(User record) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int updateByPrimaryKey(User record) {
+	public int register(User user) throws Throwable {
 		// TODO Auto-generated method stub
 		return 0;
 	}
