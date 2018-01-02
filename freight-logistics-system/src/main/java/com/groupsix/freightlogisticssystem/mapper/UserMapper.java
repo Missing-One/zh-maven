@@ -3,6 +3,7 @@ package com.groupsix.freightlogisticssystem.mapper;
 import com.groupsix.freightlogisticssystem.pojo.User;
 
 public interface UserMapper {
+	
     int deleteByPrimaryKey(String phone);
 
     int insert(User record);

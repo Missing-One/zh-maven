@@ -12,17 +12,15 @@
 <body>
 <div class="login-container">
     <h1>会员登录</h1>
-    <form action="" method="post" id="loginForm">
+    <form action="dologin" method="post" id="loginForm">
         <div>
-			<input type="text" name="phone_number" class="phone_number" placeholder="输入手机号码" autocomplete="off" id="number"/>
+			<input type="text" name="phone" class="phone_number" placeholder="输入手机号码" autocomplete="off" id="number"/>
         </div>
         <div>
-            <input type="password" name="password" class="password" placeholder="密码" oncontextmenu="return false" onpaste="return false" />
+            <input type="password"  name="password" class="password" placeholder="密码" oncontextmenu="return false" onpaste="return false" />
         </div>
-        <div>
-        	<input type="text" placeholder="请输入验证码" style="width:150px; float:left"><img src="${pageContext.request.contextPath }/images/code1.png" style="float:right; display:inline-block; margin-top:28px;">
-        </div>
-        <button id="submit" type="submit">登 陆</button>
+      
+        <button id="submit"  type="submit">登 陆</button>
         <button type="reset" style="background:#F0AD4E;">重 置</button>
     </form>
     <a href="register.html">
