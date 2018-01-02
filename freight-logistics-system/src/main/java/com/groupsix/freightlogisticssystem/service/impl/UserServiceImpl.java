@@ -14,8 +14,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User login(User user) {
-		// TODO Auto-generated method stub
-		return null;
+		return user!=null?userMapper.login(user):null;
 	}
 
 	@Override
@@ -41,5 +40,7 @@ public class UserServiceImpl implements UserService {
 				? 0	 //用户不存在
 				: 1; //用户已存在
 	}
+
+	
 	
 }
