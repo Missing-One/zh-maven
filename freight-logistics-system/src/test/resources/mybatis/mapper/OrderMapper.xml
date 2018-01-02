@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.groupsix.freightlogisticssystem.mapper.OrderMapper">
+  <resultMap id="BaseResultMap" type="com.groupsix.freightlogisticssystem.pojo.Order">
+    <id column="order_id" jdbcType="INTEGER" property="orderId" />
+    <result column="order_people" jdbcType="VARCHAR" property="orderPeople" />
+    <result column="order_cart" jdbcType="INTEGER" property="orderCart" />
+    <result column="order_reach_address" jdbcType="VARCHAR" property="orderReachAddress" />
+    <result column="order_departure_address" jdbcType="VARCHAR" property="orderDepartureAddress" />
+    <result column="order_reach_time" jdbcType="TIMESTAMP" property="orderReachTime" />
+    <result column="order_commodity" jdbcType="INTEGER" property="orderCommodity" />
+    <result column="order_cart_number" jdbcType="INTEGER" property="orderCartNumber" />
+    <result column="order_departure_time" jdbcType="TIMESTAMP" property="orderDepartureTime" />
+    <result column="order_state" jdbcType="INTEGER" property="orderState" />
+    <result column="order_price" jdbcType="REAL" property="orderPrice" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    order_id, order_people, order_cart, order_reach_address, order_departure_address, 
+    order_reach_time, order_commodity, order_cart_number, order_departure_time, order_state, 
+    order_price
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from order
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from order
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.groupsix.freightlogisticssystem.pojo.Order">
+    insert into order (order_id, order_people, order_cart, 
+      order_reach_address, order_departure_address, 
+      order_reach_time, order_commodity, order_cart_number, 
+      order_departure_time, order_state, order_price
+      )
+    values (#{orderId,jdbcType=INTEGER}, #{orderPeople,jdbcType=VARCHAR}, #{orderCart,jdbcType=INTEGER}, 
+      #{orderReachAddress,jdbcType=VARCHAR}, #{orderDepartureAddress,jdbcType=VARCHAR}, 
+      #{orderReachTime,jdbcType=TIMESTAMP}, #{orderCommodity,jdbcType=INTEGER}, #{orderCartNumber,jdbcType=INTEGER}, 
+      #{orderDepartureTime,jdbcType=TIMESTAMP}, #{orderState,jdbcType=INTEGER}, #{orderPrice,jdbcType=REAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.groupsix.freightlogisticssystem.pojo.Order">
+    insert into order
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="orderPeople != null">
+        order_people,
+      </if>
+      <if test="orderCart != null">
+        order_cart,
+      </if>
+      <if test="orderReachAddress != null">
+        order_reach_address,
+      </if>
+      <if test="orderDepartureAddress != null">
+        order_departure_address,
+      </if>
+      <if test="orderReachTime != null">
+        order_reach_time,
+      </if>
+      <if test="orderCommodity != null">
+        order_commodity,
+      </if>
+      <if test="orderCartNumber != null">
+        order_cart_number,
+      </if>
+      <if test="orderDepartureTime != null">
+        order_departure_time,
+      </if>
+      <if test="orderState != null">
+        order_state,
+      </if>
+      <if test="orderPrice != null">
+        order_price,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="orderId != null">
+        #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="orderPeople != null">
+        #{orderPeople,jdbcType=VARCHAR},
+      </if>
+      <if test="orderCart != null">
+        #{orderCart,jdbcType=INTEGER},
+      </if>
+      <if test="orderReachAddress != null">
+        #{orderReachAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="orderDepartureAddress != null">
+        #{orderDepartureAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="orderReachTime != null">
+        #{orderReachTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderCommodity != null">
+        #{orderCommodity,jdbcType=INTEGER},
+      </if>
+      <if test="orderCartNumber != null">
+        #{orderCartNumber,jdbcType=INTEGER},
+      </if>
+      <if test="orderDepartureTime != null">
+        #{orderDepartureTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderState != null">
+        #{orderState,jdbcType=INTEGER},
+      </if>
+      <if test="orderPrice != null">
+        #{orderPrice,jdbcType=REAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.groupsix.freightlogisticssystem.pojo.Order">
+    update order
+    <set>
+      <if test="orderPeople != null">
+        order_people = #{orderPeople,jdbcType=VARCHAR},
+      </if>
+      <if test="orderCart != null">
+        order_cart = #{orderCart,jdbcType=INTEGER},
+      </if>
+      <if test="orderReachAddress != null">
+        order_reach_address = #{orderReachAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="orderDepartureAddress != null">
+        order_departure_address = #{orderDepartureAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="orderReachTime != null">
+        order_reach_time = #{orderReachTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderCommodity != null">
+        order_commodity = #{orderCommodity,jdbcType=INTEGER},
+      </if>
+      <if test="orderCartNumber != null">
+        order_cart_number = #{orderCartNumber,jdbcType=INTEGER},
+      </if>
+      <if test="orderDepartureTime != null">
+        order_departure_time = #{orderDepartureTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderState != null">
+        order_state = #{orderState,jdbcType=INTEGER},
+      </if>
+      <if test="orderPrice != null">
+        order_price = #{orderPrice,jdbcType=REAL},
+      </if>
+    </set>
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.groupsix.freightlogisticssystem.pojo.Order">
+    update order
+    set order_people = #{orderPeople,jdbcType=VARCHAR},
+      order_cart = #{orderCart,jdbcType=INTEGER},
+      order_reach_address = #{orderReachAddress,jdbcType=VARCHAR},
+      order_departure_address = #{orderDepartureAddress,jdbcType=VARCHAR},
+      order_reach_time = #{orderReachTime,jdbcType=TIMESTAMP},
+      order_commodity = #{orderCommodity,jdbcType=INTEGER},
+      order_cart_number = #{orderCartNumber,jdbcType=INTEGER},
+      order_departure_time = #{orderDepartureTime,jdbcType=TIMESTAMP},
+      order_state = #{orderState,jdbcType=INTEGER},
+      order_price = #{orderPrice,jdbcType=REAL}
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </update>
+</mapper>

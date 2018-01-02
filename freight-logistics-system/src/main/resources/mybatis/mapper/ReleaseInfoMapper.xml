@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.groupsix.freightlogisticssystem.mapper.ReleaseInfoMapper">
+  <resultMap id="BaseResultMap" type="com.groupsix.freightlogisticssystem.pojo.ReleaseInfo">
+    <id column="rel_id" jdbcType="INTEGER" property="relId" />
+    <result column="rel_type" jdbcType="INTEGER" property="relType" />
+    <result column="rel_time" jdbcType="TIMESTAMP" property="relTime" />
+    <result column="departure_address" jdbcType="VARCHAR" property="departureAddress" />
+    <result column="arrived_address" jdbcType="VARCHAR" property="arrivedAddress" />
+    <result column="cargo_weight" jdbcType="INTEGER" property="cargoWeight" />
+    <result column="cargo_name" jdbcType="VARCHAR" property="cargoName" />
+    <result column="vehicle_type" jdbcType="VARCHAR" property="vehicleType" />
+    <result column="price" jdbcType="DOUBLE" property="price" />
+    <result column="delivery_phone" jdbcType="VARCHAR" property="deliveryPhone" />
+    <result column="pickup_phone" jdbcType="VARCHAR" property="pickupPhone" />
+  </resultMap>
+  
+  <select id="selectByCondition" resultMap="BaseResultMap">
+  	select <include refid="Base_Column_List" /> from release_info
+  	<include refid="Conditions_Where_Clause" />
+  </select>
+  
+  <select id="selectCountByCondition" resultType="int">
+  	select count(1) from release_info
+  	<include refid="Conditions_Where_Clause" />
+  </select>
+  
+  <sql id="Conditions_Where_Clause">
+  	<where>
+ 		<if test="conditions != null">
+		 	<if test="conditions.relId != null">and rel_id = #{conditions.relId}</if>
+			<if test="conditions.relType != null">and rel_type = #{conditions.relType}</if>
+			<if test="conditions.relTime != null">and rel_time = #{conditions.relTime}</if>
+			<if test="conditions.departureAddress != null">and departure_address = #{conditions.departureAddress}</if>
+			<if test="conditions.arrivedAddress != null">and arrived_address = #{conditions.arrivedAddress}</if>
+			<if test="conditions.cargoWeight != null">and cargo_weight = #{conditions.cargoWeight}</if>
+			<if test="conditions.cargoName != null">and cargo_name = #{conditions.cargoName}</if>
+			<if test="conditions.vehicleType != null">and vehicle_type = #{conditions.vehicleType}</if>
+			<if test="conditions.price != null">and price = #{conditions.price}</if>
+			<if test="conditions.deliveryPhone != null">and delivery_phone = #{conditions.deliveryPhone}</if>
+			<if test="conditions.pickupPhone != null">and pickup_phone = #{conditions.pickupPhone}</if>
+ 		</if>
+  	</where>
+  </sql>
+  
+  <sql id="Paging_Clause">
+  	<if test="pageEntity != null and pageEntity.totalPageCount > 0">
+		limit #{pageEntity.currentPageNoIndex}, #{pageEntity.pageSize}
+	</if>
+  </sql>
+  
+  <sql id="Base_Column_List">
+    rel_id, rel_type, rel_time, departure_address, arrived_address, cargo_weight, cargo_name, 
+    vehicle_type, price, delivery_phone, pickup_phone
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from release_info
+    where rel_id = #{relId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from release_info
+    where rel_id = #{relId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.groupsix.freightlogisticssystem.pojo.ReleaseInfo">
+    insert into release_info (rel_id, rel_type, rel_time, 
+      departure_address, arrived_address, cargo_weight, 
+      cargo_name, vehicle_type, price, 
+      delivery_phone, pickup_phone)
+    values (#{relId,jdbcType=INTEGER}, #{relType,jdbcType=INTEGER}, #{relTime,jdbcType=TIMESTAMP}, 
+      #{departureAddress,jdbcType=VARCHAR}, #{arrivedAddress,jdbcType=VARCHAR}, #{cargoWeight,jdbcType=INTEGER}, 
+      #{cargoName,jdbcType=VARCHAR}, #{vehicleType,jdbcType=VARCHAR}, #{price,jdbcType=DOUBLE}, 
+      #{deliveryPhone,jdbcType=VARCHAR}, #{pickupPhone,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.groupsix.freightlogisticssystem.pojo.ReleaseInfo">
+    insert into release_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="relId != null">
+        rel_id,
+      </if>
+      <if test="relType != null">
+        rel_type,
+      </if>
+      <if test="relTime != null">
+        rel_time,
+      </if>
+      <if test="departureAddress != null">
+        departure_address,
+      </if>
+      <if test="arrivedAddress != null">
+        arrived_address,
+      </if>
+      <if test="cargoWeight != null">
+        cargo_weight,
+      </if>
+      <if test="cargoName != null">
+        cargo_name,
+      </if>
+      <if test="vehicleType != null">
+        vehicle_type,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="deliveryPhone != null">
+        delivery_phone,
+      </if>
+      <if test="pickupPhone != null">
+        pickup_phone,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="relId != null">
+        #{relId,jdbcType=INTEGER},
+      </if>
+      <if test="relType != null">
+        #{relType,jdbcType=INTEGER},
+      </if>
+      <if test="relTime != null">
+        #{relTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="departureAddress != null">
+        #{departureAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="arrivedAddress != null">
+        #{arrivedAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="cargoWeight != null">
+        #{cargoWeight,jdbcType=INTEGER},
+      </if>
+      <if test="cargoName != null">
+        #{cargoName,jdbcType=VARCHAR},
+      </if>
+      <if test="vehicleType != null">
+        #{vehicleType,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=DOUBLE},
+      </if>
+      <if test="deliveryPhone != null">
+        #{deliveryPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="pickupPhone != null">
+        #{pickupPhone,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.groupsix.freightlogisticssystem.pojo.ReleaseInfo">
+    update release_info
+    <set>
+      <if test="relType != null">
+        rel_type = #{relType,jdbcType=INTEGER},
+      </if>
+      <if test="relTime != null">
+        rel_time = #{relTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="departureAddress != null">
+        departure_address = #{departureAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="arrivedAddress != null">
+        arrived_address = #{arrivedAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="cargoWeight != null">
+        cargo_weight = #{cargoWeight,jdbcType=INTEGER},
+      </if>
+      <if test="cargoName != null">
+        cargo_name = #{cargoName,jdbcType=VARCHAR},
+      </if>
+      <if test="vehicleType != null">
+        vehicle_type = #{vehicleType,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=DOUBLE},
+      </if>
+      <if test="deliveryPhone != null">
+        delivery_phone = #{deliveryPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="pickupPhone != null">
+        pickup_phone = #{pickupPhone,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where rel_id = #{relId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.groupsix.freightlogisticssystem.pojo.ReleaseInfo">
+    update release_info
+    set rel_type = #{relType,jdbcType=INTEGER},
+      rel_time = #{relTime,jdbcType=TIMESTAMP},
+      departure_address = #{departureAddress,jdbcType=VARCHAR},
+      arrived_address = #{arrivedAddress,jdbcType=VARCHAR},
+      cargo_weight = #{cargoWeight,jdbcType=INTEGER},
+      cargo_name = #{cargoName,jdbcType=VARCHAR},
+      vehicle_type = #{vehicleType,jdbcType=VARCHAR},
+      price = #{price,jdbcType=DOUBLE},
+      delivery_phone = #{deliveryPhone,jdbcType=VARCHAR},
+      pickup_phone = #{pickupPhone,jdbcType=VARCHAR}
+    where rel_id = #{relId,jdbcType=INTEGER}
+  </update>
+</mapper>

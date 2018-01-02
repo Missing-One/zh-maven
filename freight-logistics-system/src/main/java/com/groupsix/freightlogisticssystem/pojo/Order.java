@@ -4,11 +4,11 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class Order implements Serializable {
-    private Integer orderId;
+    private Integer orderId;	//订单编号
 
-    private String orderPeople;
+    private String orderPeople;	//下单人
 
-    private Integer orderCart;
+    private Integer orderCart;	//
 
     private String orderReachAddress;
 

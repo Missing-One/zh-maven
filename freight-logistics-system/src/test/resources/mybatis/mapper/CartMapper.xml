@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.groupsix.freightlogisticssystem.mapper.CartMapper">
+  <resultMap id="BaseResultMap" type="com.groupsix.freightlogisticssystem.pojo.Cart">
+    <id column="cart_id" jdbcType="INTEGER" property="cartId" />
+    <result column="cart_name" jdbcType="VARCHAR" property="cartName" />
+    <result column="cart_type" jdbcType="INTEGER" property="cartType" />
+    <result column="cart_length" jdbcType="REAL" property="cartLength" />
+    <result column="cart_price" jdbcType="REAL" property="cartPrice" />
+    <result column="cart_descript" jdbcType="VARCHAR" property="cartDescript" />
+    <result column="cart_picture_address" jdbcType="VARCHAR" property="cartPictureAddress" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    cart_id, cart_name, cart_type, cart_length, cart_price, cart_descript, cart_picture_address
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from cart
+    where cart_id = #{cartId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from cart
+    where cart_id = #{cartId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.groupsix.freightlogisticssystem.pojo.Cart">
+    insert into cart (cart_id, cart_name, cart_type, 
+      cart_length, cart_price, cart_descript, 
+      cart_picture_address)
+    values (#{cartId,jdbcType=INTEGER}, #{cartName,jdbcType=VARCHAR}, #{cartType,jdbcType=INTEGER}, 
+      #{cartLength,jdbcType=REAL}, #{cartPrice,jdbcType=REAL}, #{cartDescript,jdbcType=VARCHAR}, 
+      #{cartPictureAddress,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.groupsix.freightlogisticssystem.pojo.Cart">
+    insert into cart
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="cartId != null">
+        cart_id,
+      </if>
+      <if test="cartName != null">
+        cart_name,
+      </if>
+      <if test="cartType != null">
+        cart_type,
+      </if>
+      <if test="cartLength != null">
+        cart_length,
+      </if>
+      <if test="cartPrice != null">
+        cart_price,
+      </if>
+      <if test="cartDescript != null">
+        cart_descript,
+      </if>
+      <if test="cartPictureAddress != null">
+        cart_picture_address,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="cartId != null">
+        #{cartId,jdbcType=INTEGER},
+      </if>
+      <if test="cartName != null">
+        #{cartName,jdbcType=VARCHAR},
+      </if>
+      <if test="cartType != null">
+        #{cartType,jdbcType=INTEGER},
+      </if>
+      <if test="cartLength != null">
+        #{cartLength,jdbcType=REAL},
+      </if>
+      <if test="cartPrice != null">
+        #{cartPrice,jdbcType=REAL},
+      </if>
+      <if test="cartDescript != null">
+        #{cartDescript,jdbcType=VARCHAR},
+      </if>
+      <if test="cartPictureAddress != null">
+        #{cartPictureAddress,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.groupsix.freightlogisticssystem.pojo.Cart">
+    update cart
+    <set>
+      <if test="cartName != null">
+        cart_name = #{cartName,jdbcType=VARCHAR},
+      </if>
+      <if test="cartType != null">
+        cart_type = #{cartType,jdbcType=INTEGER},
+      </if>
+      <if test="cartLength != null">
+        cart_length = #{cartLength,jdbcType=REAL},
+      </if>
+      <if test="cartPrice != null">
+        cart_price = #{cartPrice,jdbcType=REAL},
+      </if>
+      <if test="cartDescript != null">
+        cart_descript = #{cartDescript,jdbcType=VARCHAR},
+      </if>
+      <if test="cartPictureAddress != null">
+        cart_picture_address = #{cartPictureAddress,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where cart_id = #{cartId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.groupsix.freightlogisticssystem.pojo.Cart">
+    update cart
+    set cart_name = #{cartName,jdbcType=VARCHAR},
+      cart_type = #{cartType,jdbcType=INTEGER},
+      cart_length = #{cartLength,jdbcType=REAL},
+      cart_price = #{cartPrice,jdbcType=REAL},
+      cart_descript = #{cartDescript,jdbcType=VARCHAR},
+      cart_picture_address = #{cartPictureAddress,jdbcType=VARCHAR}
+    where cart_id = #{cartId,jdbcType=INTEGER}
+  </update>
+</mapper>

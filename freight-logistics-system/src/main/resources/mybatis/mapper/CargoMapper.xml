@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.groupsix.freightlogisticssystem.mapper.CargoMapper">
+  <resultMap id="BaseResultMap" type="com.groupsix.freightlogisticssystem.pojo.Cargo">
+    <id column="c_id" jdbcType="INTEGER" property="cId" />
+    <result column="c_name" jdbcType="VARCHAR" property="cName" />
+    <result column="c_weight" jdbcType="INTEGER" property="cWeight" />
+    <result column="c_descript" jdbcType="VARCHAR" property="cDescript" />
+    <result column="c_release_time" jdbcType="TIMESTAMP" property="cReleaseTime" />
+    <result column="c_owner" jdbcType="VARCHAR" property="cOwner" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    c_id, c_name, c_weight, c_descript, c_release_time, c_owner
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from cargo
+    where c_id = #{cId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from cargo
+    where c_id = #{cId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.groupsix.freightlogisticssystem.pojo.Cargo">
+    insert into cargo (c_id, c_name, c_weight, 
+      c_descript, c_release_time, c_owner
+      )
+    values (#{cId,jdbcType=INTEGER}, #{cName,jdbcType=VARCHAR}, #{cWeight,jdbcType=INTEGER}, 
+      #{cDescript,jdbcType=VARCHAR}, #{cReleaseTime,jdbcType=TIMESTAMP}, #{cOwner,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.groupsix.freightlogisticssystem.pojo.Cargo">
+    insert into cargo
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="cId != null">
+        c_id,
+      </if>
+      <if test="cName != null">
+        c_name,
+      </if>
+      <if test="cWeight != null">
+        c_weight,
+      </if>
+      <if test="cDescript != null">
+        c_descript,
+      </if>
+      <if test="cReleaseTime != null">
+        c_release_time,
+      </if>
+      <if test="cOwner != null">
+        c_owner,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="cId != null">
+        #{cId,jdbcType=INTEGER},
+      </if>
+      <if test="cName != null">
+        #{cName,jdbcType=VARCHAR},
+      </if>
+      <if test="cWeight != null">
+        #{cWeight,jdbcType=INTEGER},
+      </if>
+      <if test="cDescript != null">
+        #{cDescript,jdbcType=VARCHAR},
+      </if>
+      <if test="cReleaseTime != null">
+        #{cReleaseTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cOwner != null">
+        #{cOwner,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.groupsix.freightlogisticssystem.pojo.Cargo">
+    update cargo
+    <set>
+      <if test="cName != null">
+        c_name = #{cName,jdbcType=VARCHAR},
+      </if>
+      <if test="cWeight != null">
+        c_weight = #{cWeight,jdbcType=INTEGER},
+      </if>
+      <if test="cDescript != null">
+        c_descript = #{cDescript,jdbcType=VARCHAR},
+      </if>
+      <if test="cReleaseTime != null">
+        c_release_time = #{cReleaseTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cOwner != null">
+        c_owner = #{cOwner,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where c_id = #{cId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.groupsix.freightlogisticssystem.pojo.Cargo">
+    update cargo
+    set c_name = #{cName,jdbcType=VARCHAR},
+      c_weight = #{cWeight,jdbcType=INTEGER},
+      c_descript = #{cDescript,jdbcType=VARCHAR},
+      c_release_time = #{cReleaseTime,jdbcType=TIMESTAMP},
+      c_owner = #{cOwner,jdbcType=VARCHAR}
+    where c_id = #{cId,jdbcType=INTEGER}
+  </update>
+</mapper>
