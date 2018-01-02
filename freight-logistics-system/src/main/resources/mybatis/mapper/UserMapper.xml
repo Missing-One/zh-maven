@@ -12,6 +12,22 @@
   <sql id="Base_Column_List">
     phone, password, user_name, id_card, email, address
   </sql>
+  
+  
+  
+  
+  <select id="login"   resultMap="BaseResultMap" parameterType="com.groupsix.freightlogisticssystem.pojo.User">
+    select 
+    <include refid="Base_Column_List" />
+    from users
+    where phone=#{phone} AND password=#{password}
+  </select>
+  
+ 
+  
+  
+  
+  
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
