@@ -11,21 +11,21 @@
 <body>
 <div class="register-container">
 	<h1>会员注册</h1>
-	<form action="" method="post" id="registerForm">
+	<form action="chkRegister" method="post" id="registerForm">
     	<div>
-			<input type="text" name="phone_number" class="phone_number" placeholder="输入手机号码" autocomplete="off" id="number"/>
+			<input type="text" name="phone" class="phone_number" placeholder="输入手机号码" autocomplete="off" id="number"/>
 		</div>
         <div>
 			<input type="password" name="password" class="password" placeholder="输入密码" oncontextmenu="return false" onpaste="return false" />
 		</div>
 		<div>
-			<input type="password" name="confirm_password" class="confirm_password" placeholder="再次输入密码" oncontextmenu="return false" onpaste="return false" />
+			<input type="password" class="confirm_password" placeholder="再次输入密码" oncontextmenu="return false" onpaste="return false" />
 		</div>
 		<div>
-			<input type="text" name="username" class="username" placeholder="真实姓名" autocomplete="off"/>
+			<input type="text" name="userName" class="username" placeholder="真实姓名" autocomplete="off"/>
 		
         <div>
-			<input type="text" class="id" placeholder="输入身份证号码" oncontextmenu="return false" onpaste="return false" />
+			<input type="text" name="idCard" class="id" placeholder="输入身份证号码" oncontextmenu="return false" onpaste="return false" />
 		</div>
 	
       	</div>
@@ -33,7 +33,7 @@
 			<input type="email" name="email" class="email" placeholder="输入邮箱地址" oncontextmenu="return false" onpaste="return false" />
 		</div>
         <div>
-        	<input type="text" name="city" placeholder="输入所在城市 选填">
+        	<input type="text" name="address" placeholder="输入所在城市 选填">
         </div>
        
         <div style="float:left; margin-top:10px;">
