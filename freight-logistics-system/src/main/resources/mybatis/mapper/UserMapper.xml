@@ -13,7 +13,7 @@
     phone, password, user_name, id_card, email, address
   </sql>
   
-  
+   
   
   
   <select id="login"   resultMap="BaseResultMap" parameterType="com.groupsix.freightlogisticssystem.pojo.User">
