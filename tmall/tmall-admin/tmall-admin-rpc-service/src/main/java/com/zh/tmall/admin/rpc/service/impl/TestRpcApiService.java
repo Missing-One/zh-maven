@@ -1,7 +1,7 @@
-package com.tmall.admin.rpc.service.impl;
+package com.zh.tmall.admin.rpc.service.impl;
 
 import com.alibaba.dubbo.config.annotation.Service;
-import com.tmall.admin.rpc.api.TestRpcApi;
+import com.zh.tmall.admin.rpc.api.TestRpcApi;
 import org.springframework.stereotype.Component;
 
 @Component

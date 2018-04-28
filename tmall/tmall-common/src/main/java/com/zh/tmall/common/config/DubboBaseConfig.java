@@ -1,38 +1,46 @@
-package com.tmall.admin.web;
+package com.zh.tmall.common.config;
 
 import com.alibaba.dubbo.config.*;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-@Configuration
+//@Configuration
 public class DubboBaseConfig {
+
+    // ******************************
+    @Value("dubbo_app_name")
+    private String APPLICATION_NAME = "dubbo-app";
+    @Value("dubbo_registry_address")
+    private String REGISTRY_ADDRESSES = "118.31.228.83:2181,118.31.228.83:2182,118.31.228.83:2183";
+    //private final String APPLICATION_NAME = "";
+
+    // ******************************
+
+
     /**
-     * 消费方应用名，用于计算依赖关系，不是匹配条件，不要与提供方一样
+     * 应用名，用于计算依赖关系，不是匹配条件，不要与提供方一样
      */
     @Bean
     public ApplicationConfig applicationConfig() {
         ApplicationConfig applicationConfig = new ApplicationConfig();
-        applicationConfig.setName("dubboApp");
+        applicationConfig.setName(APPLICATION_NAME);
         return applicationConfig;
     }
     /**
-     * 使用zookeeper广播注册中心暴露服务地址
+     * 使用zookeeper广播,注册中心暴露服务地址
      */
     @Bean
     public RegistryConfig registryConfig() {
         RegistryConfig registryConfig = new RegistryConfig();
         registryConfig.setProtocol("zookeeper");
-        registryConfig.setAddress("192.168.1.130:2181,192.168.1.130:2182,192.168.1.130:2183");
+        registryConfig.setAddress(REGISTRY_ADDRESSES);
+//        registryConfig.setAddress("localhost:2181,localhost:2182,localhost:2183");
         registryConfig.setClient("curator");
+        //registryConfig.setFile("/aa.cache");
         return registryConfig;
     }
 
-    @Bean
-    public ConsumerConfig consumerConfig() {
-        ConsumerConfig consumerConfig = new ConsumerConfig();
-        consumerConfig.setTimeout(3000);
-        return consumerConfig;
-    }
     @Bean
     public ProtocolConfig protocol() {
         ProtocolConfig protocolConfig = new ProtocolConfig();
@@ -40,17 +48,17 @@ public class DubboBaseConfig {
         return protocolConfig;
     }
 
-
     @Bean
     public MonitorConfig monitorConfig() {
         MonitorConfig mc = new MonitorConfig();
         mc.setProtocol("registry");
         return mc;
     }
+
     @Bean
     public ProviderConfig providerConfig() {
         ProviderConfig providerConfig = new ProviderConfig();
-        //providerConfig.setMonitor(monitorConfig());
+        providerConfig.setMonitor(monitorConfig());
         // 表示该服务使用独的五条条长连
         providerConfig.setConnections(5);
         // 固定大小线程池，启动时建立线程，不关闭，一直持有。(缺省)
@@ -63,6 +71,16 @@ public class DubboBaseConfig {
         //providerConfig.setVersion("1.0");
         return providerConfig;
     }
+
+    @Bean
+    public ConsumerConfig consumerConfig() {
+        ConsumerConfig consumerConfig = new ConsumerConfig();
+        consumerConfig.setMonitor(monitorConfig());
+        consumerConfig.setTimeout(3000);
+        consumerConfig.setCheck(false);
+        return consumerConfig;
+    }
+
     @Bean
     public ReferenceConfig referenceConfig() {
         ReferenceConfig referenceConfig = new ReferenceConfig();

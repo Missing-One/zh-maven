@@ -1,6 +1,6 @@
-package com.tmall.admin.web;
+package com.zh.tmall.admin.rpc.config;
 
-import org.springframework.context.annotation.Bean;
+import com.zh.tmall.common.config.DubboBaseConfig;
 import org.springframework.context.annotation.Configuration;
 
 /**
@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
  *
  */
 @Configuration
-public class ExportServerConfig {
+public class ExportServerConfig extends DubboBaseConfig {
     /*@Bean
     public ServiceBean<Person> personServiceExport(Person person) {
         ServiceBean<Person> serviceBean = new ServiceBean<Person>();

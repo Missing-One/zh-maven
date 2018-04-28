@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <parent>
-        <groupId>com.mk</groupId>
+        <groupId>com.zh</groupId>
         <artifactId>tmall-admin</artifactId>
         <version>1.0</version>
     </parent>
@@ -12,5 +12,26 @@
     <artifactId>tmall-admin-rpc-api</artifactId>
     <packaging>jar</packaging>
 
-
+    <dependencies>
+        <dependency>
+            <groupId>com.zh</groupId>
+            <artifactId>tmall-dao</artifactId>
+            <version>1.0</version>
+        </dependency>
+    </dependencies>
+<!--<build>
+    <finalName>${project.artifactId}</finalName>
+    <resources>
+    <resource>
+        <directory>${basedir}/src/main/java</directory>
+        <includes>
+            <include>**/*.xml</include>
+            <include>**/*.properties</include>
+        </includes>
+    </resource>
+    <resource>
+        <directory>${basedir}/src/main/resources</directory>
+    </resource>
+    </resources>
+</build>-->
 </project>

@@ -3,7 +3,7 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <groupId>com.mk</groupId>
+        <groupId>com.zh</groupId>
         <artifactId>tmall-admin</artifactId>
         <version>1.0</version>
     </parent>
@@ -15,17 +15,34 @@
         <springboot.version>1.5.12.RELEASE</springboot.version>
         <thymeleaf.version>3.0.8.RELEASE</thymeleaf.version>
     </properties>
-    
+
     <dependencies>
         <dependency>
-            <groupId>com.mk</groupId>
+            <groupId>com.zh</groupId>
             <artifactId>tmall-admin-rpc-api</artifactId>
             <version>1.0</version>
             <type>jar</type>
         </dependency>
         <dependency>
+            <groupId>com.zh</groupId>
+            <artifactId>tmall-common</artifactId>
+            <version>1.0</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>*</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
         </dependency>
         <dependency>
             <groupId>com.alibaba</groupId>
@@ -40,5 +57,29 @@
             <groupId>org.apache.curator</groupId>
             <artifactId>curator-framework</artifactId>
         </dependency>
+        <!-- 移除tomcat的支持，改成编译时支持 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
+<build>
+
+   <!-- <plugins>
+        <plugin>
+            <groupId>org.apache.tomcat.maven</groupId>
+            <artifactId>tomcat7-maven-plugin</artifactId>
+            <version>2.2</version>
+            <configuration>
+                <url>http://alollipop.win/manager/text</url>
+                <username>zh</username>
+                <password>123</password>
+                <update>true</update>
+                <path>/tmall-admin</path>
+            </configuration>
+
+        </plugin>
+    </plugins>-->
+</build>
 </project>

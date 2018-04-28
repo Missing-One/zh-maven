@@ -1,17 +1,14 @@
-package com.tmall.admin.web;
+package com.zh.tmall.admin.web.config;
 
-import com.alibaba.dubbo.config.spring.ReferenceBean;
-import com.tmall.admin.rpc.api.TestRpcApi;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
+import com.zh.tmall.common.config.DubboBaseConfig;
 
 /**
  * 消费者
  */
-@Configuration
-public class RefConfig extends DubboBaseConfig{
+//@Configuration
+public class RefConfig extends DubboBaseConfig {
 
-    @Bean
+    /*@Bean
     public ReferenceBean<TestRpcApi> person() {
         ReferenceBean<TestRpcApi> ref = new ReferenceBean<>();
         ref.setInterface(TestRpcApi.class);
@@ -20,5 +17,5 @@ public class RefConfig extends DubboBaseConfig{
         ref.setRetries(3);
         ref.setCheck(false);
         return ref;
-    }
+    }*/
 }
