@@ -1,3 +1,6 @@
+#.gitignore github模板
+#https://github.com/github/gitignore
+
 ##########java##########
 # Compiled class file
 *.class

@@ -1,0 +1,40 @@
+<script>
+$(function(){
+	$("ul.pagination li.disabled a").click(function(){
+		return false;
+	});
+});
+
+</script>
+
+<nav>
+  <ul class="pagination">
+    <li th:attr="class=${!page.hasPreviouse}? ' disabled':''">
+      <a  href="?page.start=0${page.param}" aria-label="Previous" >
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+
+    <li th:attr="class=${!page.hasPreviouse}? ' disabled':''">
+      <a  href="?page.start=${page.start-page.count}${page.param}" aria-label="Previous" >
+        <span aria-hidden="true">&lsaquo;</span>
+      </a>
+    </li>    
+
+    <li th:each="status :${#numbers.sequence(0,page.totalPage-1)}" th:attr="class=${status.index*page.count==page.start}? ' disabled':''">
+        <a  href="?page.start=${status.index*page.count}${page.param}"
+        th:attr="class=${status.index*page.count==page.start}? ' current': ''">${status.count}</a>
+    </li>
+
+    <li th:attr="class=${!page.hasNext} ? ' disabled': ''">
+      <a href="?page.start=${page.start+page.count}${page.param}" aria-label="Next">
+        <span aria-hidden="true">&rsaquo;</span>
+      </a>
+    </li>
+    <li th:attr="class=${!page.hasNext} ? ' disabled': ''">
+      <a href="?page.start=${page.last}${page.param}" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  </ul>
+</nav>

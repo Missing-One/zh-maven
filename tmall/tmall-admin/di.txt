@@ -1,0 +1,1 @@
+com.mk:tmall-admin:pom:1.0

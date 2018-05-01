@@ -1,0 +1,1 @@
+com.mk:tmall-admin-rpc-api:jar:1.0

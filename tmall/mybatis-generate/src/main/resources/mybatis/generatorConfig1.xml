@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+	<properties resource="mybatis/db.properties"></properties>
+    <context id="test" targetRuntime="MyBatis3">
+        
+        <!-- 自动识别数据库关键字，默认false，如果设置为true，根据SqlReservedWords中定义的关键字列表；
+	                               般保留默认值，遇到数据库关键字（Java关键字），使用columnOverride覆盖 -->
+	    <property name="autoDelimitKeywords" value="false"/>
+	    <!-- 生成的Java文件的编码 -->
+	    <property name="javaFileEncoding" value="UTF-8"/>
+	    <!-- 格式化java代码 -->
+	    <property name="javaFormatter" value="org.mybatis.generator.api.dom.DefaultJavaFormatter"/>
+	    <!-- 格式化XML代码 -->
+	    <property name="xmlFormatter" value="org.mybatis.generator.api.dom.DefaultXmlFormatter"/>
+	    <!-- beginningDelimiter和endingDelimiter：指明数据库的用于标记数据库对象名的符号，比如ORACLE就是双引号，MYSQL默认是`反引号； -->
+	    <property name="beginningDelimiter" value="`"/>
+	    <property name="endingDelimiter" value="`"/>
+	    
+        <plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin"></plugin>  
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin"></plugin> 
+        <plugin type="org.mybatis.generator.plugins.ToStringPlugin"></plugin> 
+        
+        <commentGenerator>
+            <!-- 这个元素用来去除指定生成的注释中是否包含生成的日期 false:表示保护 -->
+            <!-- 如果生成日期，会造成即使修改一个字段，整个实体类所有属性都会发生变化，不利于版本控制，所以设置为true -->
+            <property name="suppressDate" value="true" />
+            <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+            <property name="suppressAllComments" value="true" />
+        </commentGenerator>
+        
+        <!--数据库链接URL，用户名、密码 -->
+    	<jdbcConnection driverClass="${db.driver}" 
+				    connectionURL="${db.url}" 
+				    userId="${db.uname}" 
+				    password="${db.pwd}">
+	    <!-- 这里面可以设置property属性，每一个property属性都设置到配置的Driver上 -->
+	    </jdbcConnection>
+	    
+	     <!-- java类型处理器 
+		        用于处理DB中的类型到Java中的类型，默认使用JavaTypeResolverDefaultImpl；
+		        注意一点，默认会先尝试使用Integer，Long，Short等来对应DECIMAL和 NUMERIC数据类型；   -->
+        <javaTypeResolver>
+           <!-- 
+            true：使用BigDecimal对应DECIMAL和 NUMERIC数据类型
+            false：默认,
+                scale>0;length>18：使用BigDecimal;
+                scale=0;length[10,18]：使用Long；
+                scale=0;length[5,9]：使用Integer；
+                scale=0;length<5：使用Short； -->
+            <property name="forceBigDecimals" value="false" />
+        </javaTypeResolver>
+        <!-- 生成模型的包名和位置 -->
+        <!-- java模型创建器，是必须要的元素
+		        负责：1，key类（见context的defaultModelType）；2，java类；3，查询类
+		        targetPackage：生成的类要放的包，真实的包受enableSubPackages属性控制；
+		        targetProject：目标项目，指定一个存在的目录下，生成的内容会放到指定目录中，如果目录不存在，MBG不会自动建目录  -->
+        <javaModelGenerator targetPackage="${package}.pojo" targetProject="${target}">
+        	<!--  for MyBatis3/MyBatis3Simple 自动为每一个生成的类创建一个构造方法，构造方法包含了所有的field；而不是使用setter； -->
+	    	<property name="constructorBased" value="false"/>
+            <!-- 在targetPackage的基础上，根据数据库的schema再生成一层package，最终生成的类放在这个package下，默认为false -->
+            <property name="enableSubPackages" value="true" />
+            <!-- 设置是否在getter方法中，对String类型字段调用trim()方法 -->
+            <property name="trimStrings" value="true" />
+        </javaModelGenerator>
+        
+        <!-- 生成映射文件的包名和位置   -->
+        <sqlMapGenerator targetPackage="${package}.mapper" targetProject="${target}">
+        	<!-- 在targetPackage的基础上，根据数据库的schema再生成一层package，最终生成的类放在这个package下，默认为false -->
+            <property name="enableSubPackages" value="true" />
+        </sqlMapGenerator>
+        
+        <!-- 生成DAO的包名和位置 -->
+        <!-- 生成mapxml对应client，也就是接口dao type=ANNOTATEDMAPPER  type=XMLMAPPER  
+        	<javaClientGenerator type="XMLMAPPER"
+            targetPackage="com.zh.cm.dao" 
+            implementationPackage="com.zh.cm.dao.impl"  
+            targetProject="src/main/java">
+			 在targetPackage的基础上，根据数据库的schema再生成一层package，最终生成的类放在这个package下，默认为false 
+            <property name="enableSubPackages" value="true" />
+        	</javaClientGenerator>
+        --> 
+        <javaClientGenerator targetPackage="${package}.mapper" type="${dao.type}" targetProject="${target}">
+        	<!-- 在targetPackage的基础上，根据数据库的schema再生成一层package，最终生成的类放在这个package下，默认为false -->
+	        <property name="enableSubPackages" value="true"/>
+	    </javaClientGenerator>
+        
+        
+        <!-- 要生成哪些表 -->
+        <!-- <table tableName="${t1}" domainObjectName="${t1.aliase}"></table>
+	    <table tableName="${t2}" domainObjectName="${t2.aliase}"></table>
+	    <table tableName="${t3}" domainObjectName="${t3.aliase}"></table>
+	    <table tableName="${t4}" domainObjectName="${t4.aliase}"></table>
+	    <table tableName="${t5}" domainObjectName="${t5.aliase}"></table>
+	    <table tableName="${t6}" domainObjectName="${t6.aliase}"></table>
+	    <table tableName="${t7}" domainObjectName="${t7.aliase}"></table>
+	    <table tableName="${t8}" domainObjectName="${t8.aliase}"></table>
+	    <table tableName="${t9}" domainObjectName="${t9.aliase}"></table> -->
+	    
+<!-- 	    <table tableName="cart" domainObjectName="Cart" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table> -->
+	    <!--<table tableName="release_info" domainObjectName="ReleaseInfo" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>-->
+<!-- 	    <table tableName="order" domainObjectName="Order" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table> -->
+<!-- 	    <table tableName="users" domainObjectName="User" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table> -->
+
+        <table tableName="category" domainObjectName="Category" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+        </table>
+        <table tableName="Order" domainObjectName="Order" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+            <columnOverride column="orderCode" property="orderCode"></columnOverride>
+            <columnOverride column="userMessage" property="userMessage"></columnOverride>
+            <columnOverride column="createDate" property="createDate"></columnOverride>
+            <columnOverride column="payDate" property="payDate"></columnOverride>
+            <columnOverride column="deliveryDate" property="deliveryDate"></columnOverride>
+        </table>
+        <table tableName="orderitem" domainObjectName="OrderItem" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+        </table>
+        <table tableName="product" domainObjectName="Product" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+            <columnOverride column="subTitle" property="subTitle"></columnOverride>
+            <columnOverride column="orignalPrice" property="orignalPrice"></columnOverride>
+            <columnOverride column="promotePrice" property="promotePrice"></columnOverride>
+            <columnOverride column="createDate" property="createDate"></columnOverride>
+        </table>
+        <table tableName="productimage" domainObjectName="ProductImage" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+        </table>
+        <table tableName="property" domainObjectName="Property" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+        </table>
+        <table tableName="propertyvalue" domainObjectName="PropertyValue" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+        </table>
+        <table tableName="review" domainObjectName="Review" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+            <columnOverride column="createDate" property="createDate"></columnOverride>
+        </table>
+        <table tableName="user" domainObjectName="User" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+        </table>
+		
+    </context>
+</generatorConfiguration>

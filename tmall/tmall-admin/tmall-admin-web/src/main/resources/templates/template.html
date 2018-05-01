@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Good Thymes Virtual Grocery</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" type="text/css" media="all"
+          href="../../css/gtvg.css" th:href="@{/css/gtvg.css}"/>
+</head>
+
+<body>
+<span ></span>
+<p th:text="#{home.welcome} == null ? #{home.welcome} :'Welcome to our grocery store!'"></p>
+
+<!-- 三元判断 添加类样式-->
+<div class="footer" th:attrappend="class=${''==null} ?' ba':' a'" >
+</div>
+<dev th:attr="class=${1==null}? '':'disabled'" th:attrappend="class=${1==null}? '':' disabled2' + (${1==null}? '':' disabled2')" ></dev>
+<div th:text="${true}?'a':'b'"></div>
+
+
+<table>
+    <tr>
+        <th>NAME</th>
+        <th>PRICE</th>
+        <th>IN STOCK</th>
+        <th>index</th>
+        <th>count</th>
+
+    </tr>
+    <tr th:each="prod,i: ${array}">
+        <td th:text="${prod}">Onions</td>
+        <td th:text="${prod}">2.41</td>
+        <td th:text="${prod}?true:false">yes</td>
+        <td th:text="${i}">2.41</td>
+        <td th:text="${i.index}">2.41</td>
+    </tr>
+</table>
+
+<table>
+    <tr>
+        <th>NAME</th>
+        <th>PRICE</th>
+        <th>IN STOCK</th>
+    </tr>
+    <tr th:each="s, i: ${#numbers.sequence(0,6)}">
+        <td th:text="${s}">Onions</td>
+        <td th:text="${s}">2.41</td>
+        <td th:text="${s}? true : false">yes</td>
+        <td th:text="${i}">yes</td>
+    </tr>
+</table>
+
+</body>
+</html>
