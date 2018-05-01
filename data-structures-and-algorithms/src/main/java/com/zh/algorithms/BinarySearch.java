@@ -48,6 +48,7 @@ public class BinarySearch {
 
 
     /**
+     * 实现2
      * 使用位移运算
      * @param array
      * @param x
